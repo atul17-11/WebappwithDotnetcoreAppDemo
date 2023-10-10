@@ -13,8 +13,9 @@ steps:
 - task: DotNetCoreCLI@2
   displayName: Restore
   inputs:
-    command: restore
+    command: 'restore'
     projects: '$(Parameters.RestoreBuildProjects)'
+    restoreArguments: 'WebApp'
 
 - task: SonarSource.sonarcloud.14d9cde6-c1da-4d55-aa01-2965cd301255.SonarCloudPrepare@1
   displayName: 'Prepare analysis on SonarCloud'
