@@ -5,6 +5,7 @@ EXPOSE 443
 
 ENV ASPNETCORE_URLS=http://+:80
 
+ARG BUILDPLATFORM=linux/amd64
 FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 ARG configuration=Release
 WORKDIR /src
