@@ -18,4 +18,4 @@ RUN dotnet publish "WebApp.csproj" -c Debug -o /app
 FROM base as final
 WORKDIR /app
 COPY --from=publish/app /app .
-ENTRYPOINT ["dotnet","WebApp.dll"]
+ENTRYPOINT ["dotnet", "WebApp.dll"]
