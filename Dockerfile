@@ -4,7 +4,7 @@ WORKDIR /app
 
 # copy the csproj file and restore the dependencies
 COPY *.csproj ./
-RUN dotnet restore "WebApp.csproj"
+RUN dotnet restore 
 
 # copy the project files and build release 
 COPY . ./
