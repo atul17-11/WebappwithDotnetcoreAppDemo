@@ -1,0 +1,8 @@
+sonar.projectKey=scrum-demo-project
+sonar.projectName=my-sonar-project
+sonar.projectVersion=1.0
+sonar.sourceEncoding=UTF-8
+sonar.sources=src
+#sonar.exclusions=**/node_modules/**,src/main.ts,**/*.spec.js,public/**
+sonar.tests=tests
+sonar.test.inclusions=**/*Dockerfile
