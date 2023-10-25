@@ -20,6 +20,6 @@ ENV ASPNETCORE_URLS=http://+:80
 #RUN dotnet publish "WebApp.csproj" -c $configuration -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
-WORKDIR /app
+WORKDIR /WebApp
 COPY --from=publish /WebApp/bin/Release/net6.0 .
 ENTRYPOINT ["dotnet", "WebApp.dll"]
