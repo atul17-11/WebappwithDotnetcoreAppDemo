@@ -20,7 +20,7 @@ RUN dotnet tool install --global coverlet.console
 ENV PATH="$PATH:/root/.dotnet/tools"
 
 # Start Sonar Scanner
-RUN dotnet sonarscanner begin \
+RUN sonar-scanner begin \
   /k:"scrum-demo-project" \
   /o:"sonarcloudwith-atul-lv" \
   /d:sonar.host.url="https://sonarcloud.io" \
@@ -62,7 +62,7 @@ RUN dotnet test \
   /p:CoverletOutput="/coverage"
 
 # End Sonar Scanner
-RUN dotnet sonarscanner end /d:sonar.login=$SONAR_TOKEN
+RUN sonar-scanner end /d:sonar.login=$SONAR_TOKEN
 
 #FROM build AS publish
 #ARG configuration=Release
