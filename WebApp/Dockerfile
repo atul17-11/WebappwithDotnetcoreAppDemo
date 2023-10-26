@@ -20,12 +20,14 @@ RUN dotnet tool install --global coverlet.console
 ENV PATH="$PATH:/root/.dotnet/tools"
 
 # Start Sonar Scanner
-RUN sonar-scanner begin \
-  /k:"scrum-demo-project" \
-  /o:"sonarcloudwith-atul-lv" \
-  /d:sonar.host.url="https://sonarcloud.io" \
-  /d:sonar.login="sonarcloud-scrum-demo" \
-  /d:sonar.cs.opencover.reportsPaths=/coverage.opencover.xml
+#RUN sonar-scanner begin \
+  #/k:"scrum-demo-project" \
+  #/o:"sonarcloudwith-atul-lv" \
+  #/d:sonar.host.url="https://sonarcloud.io" \
+  #/d:sonar.login="sonarcloud-scrum-demo" \
+  #/d:sonar.cs.opencover.reportsPaths=/coverage.opencover.xml
+
+RUN sonar-scanner begin /k:"scrum-demo-project" /d:sonar.login="sonarcloud-scrum-demo" /d:sonar.cs.opencover.reportsPaths=/coverage.opencover.xml
 
 # Restore NuGet packages
 #COPY *.csproj .
@@ -62,7 +64,7 @@ RUN dotnet test \
   /p:CoverletOutput="/coverage"
 
 # End Sonar Scanner
-RUN sonar-scanner end /d:sonar.login=$SONAR_TOKEN
+RUN sonar-scanner end /d:sonar.login="sonarcloud-scrum-demo"
 
 #FROM build AS publish
 #ARG configuration=Release
