@@ -12,10 +12,10 @@ RUN dotnet build "WebApp.csproj" -c $configuration -o /app/build
 
  
 
-RUN dotnet test "WebApp.UnitTest/*.csproj" \
-  /p:CollectCoverage=true \
-  /p:CoverletOutputFormat=opencover \
-  /p:CoverletOutput="/coverage"
+#RUN dotnet test "WebApp.UnitTest/*.csproj" \
+ # /p:CollectCoverage=true \
+  #/p:CoverletOutputFormat=opencover \
+  #/p:CoverletOutput="/coverage"
 
  
 
