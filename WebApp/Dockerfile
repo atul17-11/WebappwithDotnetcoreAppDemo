@@ -9,7 +9,7 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 ARG SONAR_PROJECT_KEY=scrum-demo-project
 ARG SONAR_OGRANIZAION_KEY=sonarcloudwith-atul-lv
 ARG SONAR_HOST_URL=https://sonarcloud.io
-ARG SONAR_TOKEN=sonarcloud-scrum-demo
+ARG SONAR_TOKEN="sonarcloud-scrum-demo"
 
 WORKDIR /app
 
