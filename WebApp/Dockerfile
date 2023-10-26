@@ -62,7 +62,7 @@ RUN dotnet test \
   /p:CoverletOutput="/coverage"
 
 # End Sonar Scanner
-RUN dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"
+RUN dotnet sonarscanner end /d:sonar.login=$SONAR_TOKEN
 
 #FROM build AS publish
 #ARG configuration=Release
