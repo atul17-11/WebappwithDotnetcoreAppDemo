@@ -20,7 +20,7 @@ ENV PATH="$PATH:/root/.dotnet/tools"
 
 # Start Sonar Scanner
 RUN dotnet sonarscanner begin \
-  /k:"$SONAR_PROJECT_KEY" \
+  /k:"$SONAR_PROJECT_KEY" 
   #/o:"$SONAR_OGRANIZAION_KEY" \
   #/d:sonar.host.url="$SONAR_HOST_URL" \
   #/d:sonar.login="$SONAR_TOKEN" \
