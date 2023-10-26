@@ -21,10 +21,10 @@ ENV PATH="$PATH:/root/.dotnet/tools"
 
 # Start Sonar Scanner
 RUN dotnet sonarscanner begin \
-  /k:"$SONAR_PROJECT_KEY" \
-  /o:"$SONAR_OGRANIZAION_KEY" \
-  /d:sonar.host.url="$SONAR_HOST_URL" \
-  /d:sonar.login=$SONAR_TOKEN \
+  /k:"scrum-demo-project" \
+  /o:"sonarcloudwith-atul-lv" \
+  /d:sonar.host.url="https://sonarcloud.io" \
+  /d:sonar.login="sonarcloud-scrum-demo" \
   /d:sonar.cs.opencover.reportsPaths=/coverage.opencover.xml
 
 # Restore NuGet packages
