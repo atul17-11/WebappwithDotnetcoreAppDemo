@@ -24,7 +24,7 @@ RUN dotnet sonarscanner begin \
   /k:"$SONAR_PROJECT_KEY" \
   /o:"$SONAR_OGRANIZAION_KEY" \
   /d:sonar.host.url="$SONAR_HOST_URL" \
-  /d:sonar.login="$SONAR_TOKEN" \
+  /d:sonar.login=$SONAR_TOKEN \
   /d:sonar.cs.opencover.reportsPaths=/coverage.opencover.xml
 
 # Restore NuGet packages
@@ -39,15 +39,15 @@ RUN dotnet sonarscanner begin \
 
 
 
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
-WORKDIR /app
-EXPOSE 80
-EXPOSE 443
+#FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+#WORKDIR /app
+#EXPOSE 80
+#EXPOSE 443
 
 ENV ASPNETCORE_URLS=http://+:80
 
-ARG BUILDPLATFORM=linux/amd64
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+#ARG BUILDPLATFORM=linux/amd64
+#FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 ARG configuration=Release
 WORKDIR /src
 COPY ["WebApp/WebApp.csproj", "WebApp/"]
@@ -71,5 +71,6 @@ RUN dotnet sonarscanner end /d:sonar.login=$SONAR_TOKEN
 #FROM base AS final
 FROM mcr.microsoft.com/dotnet/sdk:6.0
 WORKDIR /app
+EXPOSE 80
 COPY --from=build /app/build .
 ENTRYPOINT ["dotnet", "WebApp.dll"]
