@@ -28,7 +28,7 @@ ENV PATH="$PATH:/root/.dotnet/tools"
   #/d:sonar.cs.opencover.reportsPaths=/coverage.opencover.xml
 
 #RUN sonar-scanner begin /k:"scrum-demo-project" /d:sonar.login="sonarcloud-scrum-demo" /d:sonar.cs.opencover.reportsPaths=/coverage.opencover.xml
-RUN sonar-scanner -Dsonar.organization='my-sonar-project' -Dsonar.projectKey='scrum-demo-project' -Dsonar.sources=src
+RUN sonar-scanner -Dsonar.organization="my-sonar-project" -Dsonar.projectKey="scrum-demo-project" -Dsonar.login="sonarcloud-scrum-demo" -Dsonar.sources=src
  
 # Restore NuGet packages
 #COPY *.csproj .
