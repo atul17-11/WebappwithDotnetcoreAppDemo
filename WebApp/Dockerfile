@@ -3,7 +3,7 @@
 #######################################################
 # Download the official ASP.NET Core SDK image
 # to build the project while creating the docker image
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 
 ARG SONAR_PROJECT_KEY=scrum-demo-project
 ARG SONAR_OGRANIZAION_KEY=sonarcloudwith-atul-lv
@@ -35,6 +35,18 @@ COPY . .
 WORKDIR "/src/WebApp"
 RUN dotnet build "WebApp.csproj" -c $configuration -o /app/build
 
+RUN dotnet test "WebApp.UnitTest/*.csproj" \
+  /p:CollectCoverage=true \
+  /p:CoverletOutputFormat=opencover \
+  /p:CoverletOutput="/coverage"
+
+## Create the code coverage file in sonarqube format using the cobertura file generated from the dotnet test command
+RUN reportgenerator "-reports:./coverage/*/coverage.opencover.xml" "-targetdir:coverage" "-reporttypes:SonarQube"
+
+ARG configuration=Release
+RUN dotnet publish "WebApp.csproj" -c "$configuration" -o /app/publish /p:UseAppHost=false
+
+
 # End Sonar Scanner
 RUN dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"
 
@@ -48,5 +60,5 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0
 WORKDIR /app
 # Open port
 EXPOSE 80
-COPY --from=build /app/build .
+COPY --from=build-env /app/publish .
 ENTRYPOINT ["dotnet", "WebApp.dll"]
