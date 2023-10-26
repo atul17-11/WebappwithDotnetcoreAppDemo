@@ -15,7 +15,7 @@ WORKDIR /app
 
 # Install Sonar Scanner, Coverlet and Java (required for Sonar Scanner)
 RUN apt-get update && apt-get install -y openjdk-11-jdk
-RUN dotnet tool install --global dotnet-sonarscanner
+RUN dotnet tool install --global dotnet-sonarscanner --version 5.6
 RUN dotnet tool install --global coverlet.console
 ENV PATH="$PATH:/root/.dotnet/tools"
 
