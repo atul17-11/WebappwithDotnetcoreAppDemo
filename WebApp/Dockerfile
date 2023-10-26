@@ -36,10 +36,10 @@ COPY --from=build /app/publish /app
 
 # Set up the SonarScanner properties
 RUN sonar-scanner \
-    -Dsonar.projectKey=scrum-demo-project \
+    -Dsonar.projectKey="scrum-demo-project" \
     -Dsonar.sources=/app \
     -Dsonar.host.url=https://sonarcloud.io \
-    -Dsonar.login=sonarcloud-scrum-demo
+    -Dsonar.login="sonarcloud-scrum-demo"
 
  
 
