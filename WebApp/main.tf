@@ -19,7 +19,7 @@ resource "random_integer" "ri" {
 }
 
 # Create the resource group
-resource "azurerm_resource_group" "rg" {
+resource "azurerm_resource_group" "atul-rg" {
   name     = "myResourceGroup-${random_integer.ri.result}"
   location = "eastus"
 }
